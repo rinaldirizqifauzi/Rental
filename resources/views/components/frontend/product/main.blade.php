@@ -1,6 +1,9 @@
 <div class="main">
-    <div class="row mt-10">
+    <div class="row ">
         <div class="col-lg-8">
+            <center>
+                <h3>Mobil yang tersedia</h3>
+            </center>
             <div class="section text-center">
                 <div class="row">
                 @forelse ($rentals as $rental)

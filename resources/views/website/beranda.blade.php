@@ -13,7 +13,7 @@
     <div class="filter"></div>
     <div class="container">
         <div class="motto text-center">
-            <h3>Buat data merek disini</h3>
+            <h3>Buat profil terlebih dahulu untuk lihat selengkapnya</h3>
             <br />
             <a href="{{ route('homepage') }}" class="btn btn-outline-neutral btn-round">Lihat Selengkapnya</a>
         </div>

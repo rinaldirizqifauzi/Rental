@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <table>
                         <tr>
                             <td><strong><h5 class="text-detail">Nama Mobil</h5></strong></td>
@@ -61,20 +61,19 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Kelengkapan mobil</label>
                                 <hr class="horizontal dark mt-0">
-                                <!-- List category -->
+                                {{ $rental->kelengkapan->pluck(['nama'])->implode(',') }}
+                                {{-- <!-- List category -->
                                 @include('components.card.rental.detail_list_kelengkapan',[
                                         'kelengkapans' => $kelengkapans,
                                         'kelengkapanChecked' => $rental->kelengkapan->pluck('id')->toArray(),
                                     ])
-                                    <!-- List category -->
+                                    <!-- List category --> --}}
                             </div>
                         </tr>
                     </table>
-                </div>
-                <div class="col-lg-3">
                     <table>
                         <tr>
-                           <strong> <h5 class="text-detail" style="text-align: center">Harga</h5></strong></td>
+                           <strong> <h5 class="text-detail" style="text-align: center">Harga Sewa/Hari</h5></strong></td>
                             <td><strong><h5 class="text-detail " style="text-align: center; font-style: italic">{{ $rental->status }}</h5></strong></td>
                             <td><strong><h5 class="text-detail  mx-7" style="text-align: center; font-style: italic">Rp.{{ $rental->harga }}</h5></strong></td>
                         </tr>

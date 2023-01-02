@@ -5,6 +5,18 @@
             <form action="{{ route('register') }}" class="register-form"  method="POST" >
                 @csrf
                 <div class="mb-3">
+                    {{-- Status User --}}
+                    <div class="form-group">
+                    <input type="hidden" class="form-control form-control-danger"  value="user" id="inputDanger1" name="status_user">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    {{-- Level --}}
+                    <div class="form-group">
+                    <input type="hidden" class="form-control form-control-danger"  value="pelanggan" id="inputDanger1" name="level">
+                    </div>
+                </div>
+                <div class="mb-3">
                     {{-- Email --}}
                     <label style="color: white"> Email</label>
                     <div class="form-group @error('email') has-danger @enderror">

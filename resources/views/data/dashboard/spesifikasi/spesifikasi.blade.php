@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Spesifikasi
+@endsection
+
 @section('card-title-mobil-2')
     Form Spesifikasi Mobil
 @endsection

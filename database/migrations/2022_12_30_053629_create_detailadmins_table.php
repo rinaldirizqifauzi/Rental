@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detailusers', function (Blueprint $table) {
+        Schema::create('detailadmins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique();
-            $table->string('email');
             $table->string('nama');
-            $table->string('username');
             $table->string('alamat');
+            $table->string('tpt_lhr');
+            $table->string('tgl_lhr');
+            $table->string('umur');
             $table->string('foto')->nullable();
             $table->string('foto_ktp')->nullable();
             $table->string('background')->nullable();
             $table->string('no_hp')->nullable();
             $table->timestamps();
-
         });
     }
 
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detailusers');
+        Schema::dropIfExists('detailadmins');
     }
 };

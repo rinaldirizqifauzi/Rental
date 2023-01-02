@@ -21,11 +21,15 @@ class SpesikasiController extends Controller
         $validateData = $request->validate([
             'nama' => 'required',
             'tahun' => 'required|integer|min:4',
+            'sheet' => 'required|integer|max:12'
         ],[
             'nama.required' => 'Nama wajib diisi!',
             'tahun.required' => 'Tahun wajib diisi!',
             'tahun.integer' => 'Harap isi dengan angka!',
             'tahun.min' => 'Tahun min 4 karakter!',
+            'sheet.required' => 'Bangku wajib diisi!',
+            'sheet.integer' => 'Harap isi dengan angka!',
+            'sheet.max' => 'Max 12 bangku!',
         ]);
 
         Spesikasi::create($validateData);
@@ -46,11 +50,15 @@ class SpesikasiController extends Controller
         $validateData = $request->validate([
             'nama' => 'required',
             'tahun' => 'required|integer|min:4',
+            'sheet' => 'required|integer|max:12'
         ],[
             'nama.required' => 'Nama wajib diisi!',
             'tahun.required' => 'Tahun wajib diisi!',
             'tahun.integer' => 'Harap isi dengan angka!',
             'tahun.min' => 'Tahun min 4 karakter!',
+            'sheet.required' => 'Bangku wajib diisi!',
+            'sheet.integer' => 'Harap isi dengan angka!',
+            'sheet.max' => 'Max 12 bangku!',
         ]);
 
         Spesikasi::where('id', $id)->update($validateData);

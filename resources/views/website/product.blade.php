@@ -54,10 +54,28 @@
                 <img src="{{ asset('foto') }}/{{  Auth::user()->detail->first()->foto }}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
             </div>
             <div class="name">
-                <h4 class="title"> Mobil yang tersedia
-                <br />
-                </h4>
-            </div>
+                <h4 class="title">
+                  <div class="row">
+                    <div class="col-lg-3">
+                        <label for="kelengkapan"><p>Kelengkapan</p></label>
+                        <select name="kelengkapan" id="kelengkapan" class="form-control"></select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="warna"><p>Warna</p></label>
+                        <select name="warna" id="warna" class="form-control"></select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="tahun"><p>Tahun</p></label>
+                        <select name="tahun" id="tahun" class="form-control"></select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="sheet"><p>Bangku</p></label>
+                        <select name="sheet" id="sheet" class="form-control"></select>
+                    </div>
+                </div>
+                <button class="form-control my-2">Cari</button>
+            </h4>
+        </div>
         </div>
     </div>
 </div>

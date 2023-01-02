@@ -10,7 +10,7 @@ class Spesikasi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'tahun', 'id_tipe'
+        'nama', 'tahun', 'id_tipe', 'sheet'
     ];
 
     public function rental()

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Ceklevel
+class Cekpelanggan
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,11 @@ class Ceklevel
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$levels)
+    public function handle(Request $request, Closure $next, ... $statuses)
     {
-        if (in_array($request->user()->level, $levels)){
+        if(in_array($request->user()->status_user, $statuses)){
             return $next($request);
         }
-        return redirect('/beranda');
+        return redirect()->route('create.profil', Auth::user()->email);
     }
 }

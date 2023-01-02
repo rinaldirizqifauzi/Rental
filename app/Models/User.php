@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'level',
+        'status_user',
         'email',
         'password',
     ];
@@ -47,6 +48,33 @@ class User extends Authenticatable
 
     public function detail()
     {
-        return $this->hasMany(Detailuser::class, 'user_id');
+        return $this->hasMany(Detailuser::class);
+    }
+
+    public function detailadmin()
+    {
+        return $this->hasMany(Detailadmin::class);
+    }
+
+    // Pelanggan Scope
+    public function scopePelangganactive($query)
+    {
+        return $query->where('status_user', "active");
+    }
+
+    public function scopePelanggannonactive($query)
+    {
+        return $query->where('status_user', "user");
+    }
+
+    // Admin Scope
+    public function scopeAdminactive($query)
+    {
+        return $query->where('status_user', "active");
+    }
+
+    public function scopeAdminnonactive($query)
+    {
+        return $query->where('status_user', null);
     }
 }

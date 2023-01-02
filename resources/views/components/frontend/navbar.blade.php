@@ -44,13 +44,13 @@
                                 <a href="{{ route('dashboard.index') }}" class="dropdown-item">
                                     Dashboard
                                 </a>
-                                @elseif(auth()->user()->level == 'pelanggan')
+                                @elseif(auth()->user()->status_user == 'active')
                                 <a href="{{ route('show.profil', Auth::user()->email) }}" class="dropdown-item">
                                     Profil
                                  </a>
                             </li>
                             @endif
-                            @if(Auth::user()->status_user == null)
+                            @if(Auth::user()->status_user == 'user')
                             <li class="nav-item">
                                 <a href="{{ route('create.profil', Auth::user()->email) }}" class="dropdown-item">
                                     Buat Profil

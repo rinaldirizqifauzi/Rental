@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Dashboard
+@endsection
+
 @section('card-title-mobil-1')
     Spesifikasi Mobil
 @endsection

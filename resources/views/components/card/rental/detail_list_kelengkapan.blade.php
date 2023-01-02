@@ -1,6 +1,6 @@
 <div class="col-lg-4">
     <ul>
-        @foreach ($kelengkapans as $kelengkapan)
+        {{-- @foreach ($kelengkapans as $kelengkapan)
         <li class="form-group form-check">
             @if (old('id_kelengkapan', $kelengkapanChecked) && in_array($kelengkapan->id, old('id_kelengkapan', $kelengkapanChecked)) )
                 <input class="form-check-input" value="{{ old('id_kelengkapan', $kelengkapan->id,  $kelengkapanChecked) }}" type="checkbox" name="id_kelengkapan[]" checked >
@@ -14,6 +14,6 @@
                 ])
             @endif
         </li>
-        @endforeach
+        @endforeach --}}
     </ul>
 </div>

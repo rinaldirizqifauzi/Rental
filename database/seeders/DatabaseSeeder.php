@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            KelengkapanTableSeeder::class
+            KelengkapanTableSeeder::class,
+            AdminUserSeeder::class
         ]);
     }
 }

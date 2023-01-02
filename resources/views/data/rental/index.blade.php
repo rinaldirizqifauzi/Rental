@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Rental
+@endsection
+
 @section('rental_card-1')
     @include('components.backend.menu-rental.card-1')
 @endsection

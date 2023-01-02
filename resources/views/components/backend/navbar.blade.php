@@ -31,13 +31,34 @@
             </a>
             <span class="nav-link-text ms-1" style="color: white">Wellcome, {{ auth()->user()->username }}</span>
             <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                @if(Auth::user()->status_user == null)
+                <li class="mb-2">
+                    <a href="{{ route('admin.create_profil', Auth::user()->username) }}" class="dropdown-item border-radius-md">
+                        <div class="d-flex py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6>Buat Profil</h6>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                @elseif(Auth::user()->status_user == 'active')
+                <li class="mb-2">
+                    <a href="{{ route('admin.show_profil', Auth::user()->username) }}" class="dropdown-item border-radius-md">
+                        <div class="d-flex py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6> Profil</h6>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                @endif
                 <li class="mb-2">
                     <a href="{{ route('beranda') }}" class="dropdown-item border-radius-md">
                         <div class="d-flex py-1">
                             <div class="d-flex flex-column justify-content-center">
                                 <h6>Halaman Website</h6>
                             </div>
-                          </div>
+                        </div>
                     </a>
               </li>
               <li class="mb-2">

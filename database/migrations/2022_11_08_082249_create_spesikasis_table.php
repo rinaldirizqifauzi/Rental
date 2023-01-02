@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('spesikasis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('sheet');
             $table->string('tahun');
             $table->timestamps();
         });

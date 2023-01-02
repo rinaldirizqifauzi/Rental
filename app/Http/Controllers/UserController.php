@@ -58,10 +58,11 @@ class UserController extends Controller
             "no_hp" => $request->no_hp,
             "alamat" => $request->alamat,
             "foto" => $file_foto_profil_name,
-            "background" => $file_foto_background_name
+            "background" =>  $file_foto_background_name,
         ]);
 
-        return redirect()->route('show.profil', Auth::user()->email);
+        return redirect()->route('beranda');
+
     }
 
     public function editProfil()

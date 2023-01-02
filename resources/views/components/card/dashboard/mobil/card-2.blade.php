@@ -20,6 +20,16 @@
                             </span>
                         @enderror
                     </div>
+                    {{-- Bangku --}}
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Bangku mobil</label>
+                        <input class="form-control  @error('sheet') is-invalid @enderror" name="sheet"  value="{{ old('sheet') }}" type="number" placeholder="Masukan bangku mobil...">
+                        @error('sheet')
+                            <span style="color: red">
+                                    {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
                     {{-- Tahun --}}
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">Tahun mobil</label>

@@ -13,6 +13,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama mobil</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Bangku mobil</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tahun mobil</th>
                     </tr>
                   </thead>
@@ -31,6 +32,13 @@
                         <div class="d-flex px-2">
                           <div class="my-auto">
                             <h6 class="mb-0 text-sm">{{ $spesifikasi->nama }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2">
+                          <div class="my-auto">
+                            <h6 class="mb-0 text-sm">{{ $spesifikasi->sheet }}</h6>
                           </div>
                         </div>
                       </td>
