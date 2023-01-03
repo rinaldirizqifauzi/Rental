@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Kelengkapan
+@endsection
+
 @section('card-title-kelengkapan-3')
     Data Kelengkapan
 @endsection

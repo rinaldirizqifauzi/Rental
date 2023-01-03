@@ -1,5 +1,10 @@
 @extends('layouts.backend')
 
+@section('title')
+    Tipe
+@endsection
+
+
 @section('card-title-type_mobil-4')
     Edit {{ $tipe->kode_tipe }}
 @endsection

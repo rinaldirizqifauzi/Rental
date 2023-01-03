@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nama_tipe');
             $table->string('kode_tipe')->unique();
             $table->string('gambar');
-            $table->string('mesin');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ class Tipe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_tipe', 'gambar', 'mesin', 'kode_tipe'
+        'nama_tipe', 'gambar', 'kode_tipe'
     ];
 
 

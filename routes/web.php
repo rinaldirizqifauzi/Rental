@@ -26,7 +26,6 @@ use App\Http\Controllers\PelangganController;
 |
 */
 
-
 //
 
 
@@ -36,17 +35,7 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-    Route::get('/beranda', [WebsiteController::class, 'beranda'])->name('beranda')->middleware('auth');
-    Route::get('/profil/{id}',[ UserController::class, 'createProfil'])->name('create.profil');
-    Route::post('/profil/buat/{id}', [ UserController::class, 'storeProfil'])->name('store.profil');
-
-
-    Route::prefix('/')->middleware('auth', 'ceklevel:pelanggan', 'cekpelanggan:active')->group(function(){
-        Route::get('/profil/show/{user}',[ UserController::class, 'showProfil'])->name('show.profil');
-        Route::get('/profil/edit/{user}',[ UserController::class, 'editProfil'])->name('edit.profil');
-        Route::put('/profil/update/{user}',[ UserController::class, 'updateProfil'])->name('update.profil');
-        Route::get('/homepage',[ WebsiteController::class, 'showHomepage'])->name('homepage');
-    });
+Route::get('/beranda', [WebsiteController::class, 'beranda'])->name('beranda')->middleware('auth');
 
 
 Route::prefix('/dashboard')->middleware('auth', 'ceklevel:admin', 'cekadmin:active')->group(function () {
@@ -108,6 +97,17 @@ Route::group(['prefix' => '/rental'], function(){
 });
 
 // Pelanggan Active
+    Route::get('/profil/{id}',[ UserController::class, 'createProfil'])->name('create.profil');
+    Route::post('/profil/buat/{id}', [ UserController::class, 'storeProfil'])->name('store.profil');
+
+    Route::prefix('/')->middleware('auth', 'ceklevel:pelanggan', 'cekpelanggan:active')->group(function(){
+        Route::get('/profil/show/{user}',[ UserController::class, 'showProfil'])->name('show.profil');
+        Route::get('/profil/edit/{user}',[ UserController::class, 'editProfil'])->name('edit.profil');
+        Route::put('/profil/update/{user}',[ UserController::class, 'updateProfil'])->name('update.profil');
+        Route::get('/homepage',[ WebsiteController::class, 'showHomepage'])->name('homepage');
+        Route::get('/product/detail/{kode_mobil}',[ WebsiteController::class, 'showDetailProduct'])->name('product.detail');
+    });
+
     Route::prefix('/pelanggan')->group(function(){
         // Pelanggan
         Route::get('/', [PelangganController::class, 'showUser'])->name('user.index')->middleware('auth', 'cekadmin:active');

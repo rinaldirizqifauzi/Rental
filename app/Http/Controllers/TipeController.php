@@ -21,14 +21,12 @@ class TipeController extends Controller
         $request->validate([
             'nama_tipe' => 'required|unique:tipes',
             'gambar' => 'required|mimes:png,jpg',
-            'mesin' => 'required',
             'kode_tipe' => 'required|unique:tipes',
         ],[
             'nama_tipe.required' => 'Tipe wajib diisi!',
             'nama_tipe.unique' => 'Tipe sudah ada!',
             'gambar.required' => 'Gambar wajib diisi!',
             'gambar.mimes' => 'Gambar harus berformat *png, *jpg!',
-            'mesin.required' => 'Mesin wajib diisi!',
             'kode_tipe.required' => 'Kode wajib diisi!',
         ]);
 
@@ -39,7 +37,6 @@ class TipeController extends Controller
 
          $data = new Tipe();
          $data->nama_tipe = $request->nama_tipe;
-         $data->mesin = $request->mesin;
          $data->kode_tipe = $request->kode_tipe;
          $data->gambar = $file_gambar_name;
          $data->save();

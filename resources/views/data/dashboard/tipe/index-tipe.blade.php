@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Tipe
+@endsection
+
 @section('card-title-type_mobil-2')
     Form Tipe Mobil
 @endsection

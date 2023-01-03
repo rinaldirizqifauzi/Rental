@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Mesin
+@endsection
+
 @section('card-title-mesin_mobil-2')
     Form Mesin Mobil
 @endsection

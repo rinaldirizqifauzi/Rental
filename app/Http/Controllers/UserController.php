@@ -61,7 +61,7 @@ class UserController extends Controller
             "background" =>  $file_foto_background_name,
         ]);
 
-        return redirect()->route('beranda');
+        return redirect()->route('homepage');
 
     }
 
@@ -88,8 +88,7 @@ class UserController extends Controller
             'no_hp' => 'required',
         ]);
 
-        $ubah = Detailuser::findOrFail($id);
-
+        $ubah = Detailuser::where('user_id', $id)->first();
         if ($request->file('foto') == "") {
             $request->validate([
                 'foto' => 'mimes:jpg,png,jpeg',
@@ -97,7 +96,6 @@ class UserController extends Controller
 
         }else{
             $file_foto = public_path('/foto/'). $ubah->foto;
-
             // Cek jika ada gambar
             if (file_exists($file_foto)) {
                 // Maka hapus jika ada foto

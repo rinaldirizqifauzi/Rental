@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Rental
+@endsection
+
 @section('card-title-rental-3')
     Detail {{ $rental->kode_mobil }}({{ $rental->spesifikasi->nama }})
 @endsection

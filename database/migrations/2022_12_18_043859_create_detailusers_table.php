@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('foto')->nullable();
             $table->string('foto_ktp')->nullable();
+            $table->string('foto_kk')->nullable();
             $table->string('background')->nullable();
             $table->string('no_hp')->nullable();
             $table->timestamps();

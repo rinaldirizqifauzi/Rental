@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Warna
+@endsection
+
 @section('card-title-warna_mobil-2')
     Form Warma Mobil
 @endsection

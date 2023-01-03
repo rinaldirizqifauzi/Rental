@@ -42,16 +42,6 @@
                             </span>
                         @enderror
                     </div>
-                    {{-- Mesin --}}
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Mesin mobil</label>
-                        <input class="form-control  @error('mesin') is-invalid @enderror" name="mesin" value="{{ old('mesin') }}" type="text" placeholder="Masukan mesin mobil...">
-                        @error('mesin')
-                            <span style="color: red">
-                                    {{ $message }}
-                            </span>
-                        @enderror
-                    </div>
                 </div>
             </div>
         </div>

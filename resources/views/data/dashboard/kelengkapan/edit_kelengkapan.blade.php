@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    Kelengkapan
+@endsection
+
 @section('card-title-kelengkapan-4')
     Edit {{ $kelengkapan->nama }}({{ $kelengkapan->kode }})
 @endsection

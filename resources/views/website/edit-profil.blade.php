@@ -134,53 +134,72 @@
                                 <li><p class="text-danger">Untuk melengkapi persyaratan harap untuk isi form dibawah!</p></li>
                             </ul>
                         </table>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        {{-- Foto KTP --}}
-                                        <label > Foto KTP </label>
-                                        <div class="form-group @error('foto_ktp') has-danger @enderror">
-                                            <div class="row my-2">
-                                                <div class="col-lg-6">
-                                                    <label for="foto_lama">Foto Lama</label>
-                                                    <center><img src="{{ asset('ktp') }}/{{ Auth::user()->detail->first()->foto_ktp }}" alt="Image placeholder" class="img-foto card-img-top" ></center>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label for="foto_lbaru">Foto Baru</label>
-                                                    <center><img class="img-fotoKTP card-img-top my-2"></center>
-                                                </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    {{-- Foto KTP --}}
+                                    @if (auth()->user()->detail->first()->foto_ktp == null)
+                                        <label> Foto KTP </label>
+                                    @else
+                                         <label>{{ auth()->user()->detail->first()->foto_ktp }}</label>
+                                    @endif
+                                    <div class="form-group @error('foto_ktp') has-danger @enderror">
+                                        <div class="row my-2">
+                                            @if (auth()->user()->detail->first()->foto_ktp == null)
+                                            <div class="col-lg-6">
+                                                <center><img class="img-fotoKTP card-img-top my-2"></center>
                                             </div>
-                                            <input type="file" class="form-control form-control-danger"  id="foto_ktp" name="foto_ktp" onchange="previewImageKTP()">
-                                            @error('foto_ktp')
-                                                <div class="form-control-feedback"><strong>{{ $message }}</strong></div>
-                                            @enderror
+                                            @else
+                                            <div class="col-lg-6">
+                                                <label for="foto_lama">Foto Lama</label>
+                                                <center><img src="{{ asset('ktp') }}/{{ Auth::user()->detail->first()->foto_ktp }}" alt="Image placeholder" class="img-foto card-img-top" ></center>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="foto_lbaru">Foto Baru</label>
+                                                <center><img class="img-fotoKTP card-img-top my-2"></center>
+                                            </div>
+                                            @endif
                                         </div>
+                                        <input type="file" class="form-control form-control-danger"  id="foto_ktp" name="foto_ktp" onchange="previewImageKTP()">
+                                        @error('foto_ktp')
+                                            <div class="form-control-feedback"><strong>{{ $message }}</strong></div>
+                                        @enderror
                                     </div>
-                                    <div class="mb-3">
-                                        {{-- Foto KK --}}
-                                        <label > Foto KK </label>
-                                        <div class="form-group @error('foto_kk') has-danger @enderror">
-                                            <div class="row my-2">
+                                </div>
+                                <div class="mb-3">
+                                    {{-- Foto KK --}}
+                                    <label> Foto KK </label>
+                                    <div class="form-group @error('foto_kk') has-danger @enderror">
+                                        <div class="row my-2">
+                                            @if (auth()->user()->detail->first()->foto_kk == null)
                                                 <div class="col-lg-6">
-                                                    <label for="foto_baru">Foto Lama</label>
-                                                    <center><img src="{{ asset('kk') }}/{{ Auth::user()->detail->first()->foto_kk }}" alt="Image placeholder" class="img-foto card-img-top" ></center>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label for="foto_baru">Foto Baru</label>
                                                     <center><img class="img-fotoKK card-img-top my-2"></center>
                                                 </div>
+                                            @else
+                                            <div class="col-lg-6">
+                                                <label for="foto_lama">Foto Lama</label>
+                                                <center><img src="{{ asset('kk') }}/{{ Auth::user()->detail->first()->foto_kk }}" alt="Image placeholder" class="img-kk card-img-top" ></center>
+                                                @if (auth()->user()->detail->first()->foto_kk)
+                                                    <center>{{ auth()->user()->detail->first()->foto_kk }}</center>
+                                                @endif
                                             </div>
-                                            <input type="file" class="form-control form-control-danger"  id="foto_kk" name="foto_kk" onchange="previewImageKK()" >
-                                            @error('foto_kk')
-                                                <div class="form-control-feedback"><strong>{{ $message }}</strong></div>
-                                            @enderror
+                                            <div class="col-lg-6">
+                                                <label for="foto_baru">Foto Baru</label>
+                                                <center><img class="img-fotoKK card-img-top my-2"></center>
+                                            </div>
+                                            @endif
                                         </div>
+                                        <input type="file" class="form-control form-control-danger"  id="foto_kk" name="foto_kk" onchange="previewImageKK()" >
+                                        @error('foto_kk')
+                                            <div class="form-control-feedback"><strong>{{ $message }}</strong></div>
+                                        @enderror
                                     </div>
-                                    <center>
-                                        <button class="btn btn-primary btn-round" type="submit">Submit</button>
-                                    </center>
                                 </div>
+                                <center>
+                                    <button class="btn btn-primary btn-round" type="submit">Submit</button>
+                                </center>
                             </div>
+                        </div>
                         </form>
                     </div>
                 </div>
