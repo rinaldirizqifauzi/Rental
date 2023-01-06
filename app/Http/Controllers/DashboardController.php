@@ -2,22 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detailadmin;
-use App\Models\User;
-use App\Models\Detailuser;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-
-
 
 class DashboardController extends Controller
 {
 
     public function index()
     {
-        return view('data.dashboard.index');
+        $hari_ini = Carbon::today();
+        return view('data.dashboard.index', [
+            'confirms' => DB::table('rental_user')->get(),
+            'confirm_now' => DB::table('rental_user')->whereDate('created_at', $hari_ini)->count(),
+        ]);
     }
+
+    // Now
+    public function konfirmasi()
+    {
+        $hari_ini = Carbon::today();
+        return view('data.dashboard.now.confirm_rental', [
+            'transaksis' => Transaksi::all(),
+            'confirms' => DB::table('rental_user')->get(),
+            'confirm_now' => DB::table('rental_user')->whereDate('created_at', $hari_ini)->count(),
+        ]);
+    }
+
+    public function dataMaster()
+    {
+       return view('data.dashboard.data-master');
+    }
+
+
 
 }

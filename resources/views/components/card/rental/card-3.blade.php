@@ -62,12 +62,6 @@
                                 <label for="example-text-input" class="form-control-label">Kelengkapan mobil</label>
                                 <hr class="horizontal dark mt-0">
                                 {{ $rental->kelengkapan->pluck(['nama'])->implode(',') }}
-                                {{-- <!-- List category -->
-                                @include('components.card.rental.detail_list_kelengkapan',[
-                                        'kelengkapans' => $kelengkapans,
-                                        'kelengkapanChecked' => $rental->kelengkapan->pluck('id')->toArray(),
-                                    ])
-                                    <!-- List category --> --}}
                             </div>
                         </tr>
                     </table>

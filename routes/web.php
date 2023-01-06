@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\WarnaController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\WebsiteController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\SpesikasiController;
 use App\Http\Controllers\KelengkapanController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +41,8 @@ Route::get('/beranda', [WebsiteController::class, 'beranda'])->name('beranda')->
 Route::prefix('/dashboard')->middleware('auth', 'ceklevel:admin', 'cekadmin:active')->group(function () {
     // Dashboard
     Route::get('/',[DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/data-master',[DashboardController::class, 'dataMaster'])->name('dashboard.data-master');
+    Route::get('/konfirmasi', [DashboardController::class, 'konfirmasi'])->name('konfirmasi.index');
     // Spesifikasi
     Route::get('/select/tipe', [SpesikasiController::class, 'selectTipe'])->name('tipe.select');
     Route::get('/select/warna', [SpesikasiController::class, 'selectWarna'])->name('warna.select');
@@ -94,6 +96,13 @@ Route::group(['prefix' => '/rental'], function(){
     Route::put('/rental/{kode_mobil}/update', [RentalController::class, 'update'])->name('rental.update')->middleware('auth','cekadmin:active');
     Route::get('/{kode_mobil}', [RentalController::class, 'destroy'])->name('rental.destroy')->middleware('auth','cekadmin:active');
     Route::get('/rental/detail/{kode_mobil}', [RentalController::class, 'detail'])->name('rental.detail')->middleware('auth','cekadmin:active');
+});
+
+// Transaksi
+Route::group(['prefix' => '/transaksi'], function(){
+    Route::post('/', [TransaksiController::class, 'storeTransaksi'])->name('store.transaksi')->middleware('auth', 'ceklevel:pelanggan', 'cekpelanggan:active');
+    Route::get('/detail/{id}', [TransaksiController::class, 'detailTransaksi'])->name('detail.transaksi')->middleware('auth', 'ceklevel:admin', 'cekadmin:active');
+    Route::put('/konfirmasi/{id}', [TransaksiController::class, 'konfirmasiTransaksi'])->name('confirm.transaksi')->middleware('auth', 'ceklevel:admin', 'cekadmin:active');
 });
 
 // Pelanggan Active

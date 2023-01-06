@@ -38,6 +38,11 @@ class Rental extends Model
         return $this->belongsToMany(Kelengkapan::class)->withTimestamps();
     }
 
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
+
     public function scopePublish($query)
     {
         return $query->where('status', "Tersedia");

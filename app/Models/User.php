@@ -46,6 +46,11 @@ class User extends Authenticatable
     ];
 
 
+    public function rental()
+    {
+        return $this->belongsToMany(Rental::class)->withTimestamps();
+    }
+
     public function detail()
     {
         return $this->hasMany(Detailuser::class);
@@ -54,6 +59,11 @@ class User extends Authenticatable
     public function detailadmin()
     {
         return $this->hasMany(Detailadmin::class);
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
     }
 
     // Pelanggan Scope

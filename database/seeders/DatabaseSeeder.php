@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Rental;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,8 +24,12 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            AdminUserSeeder::class,
             KelengkapanTableSeeder::class,
-            AdminUserSeeder::class
+            WarnaTableSeeder::class,
+            TipeTableSeeder::class,
+            MesinTableSeeder::class,
+            SpesifikasiTableSeeder::class,
         ]);
     }
 }

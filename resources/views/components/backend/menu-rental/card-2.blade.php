@@ -4,10 +4,9 @@
             <div class="col-8">
                 <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Konfirmasi</p>
-                        <h5 class="font-weight-bolder"> 2,300</h5>
+                        <h5 class="font-weight-bolder"> {{ $confirm_now }}</h5>
                     <p class="mb-0">
-                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                        since last week
+                       <a href="{{ route('konfirmasi.index') }}">Lihat selengkapnya</a>
                     </p>
                 </div>
             </div>
