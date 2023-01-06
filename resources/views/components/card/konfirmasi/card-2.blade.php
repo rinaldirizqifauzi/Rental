@@ -61,6 +61,28 @@
                                             <td>:</td>
                                             <td> {{  $transaksis->user->detail->first()->no_hp }}</td>
                                         </tr>
+                                        <hr>
+                                        <tr>
+                                            <td>Tgl Sewa</td>
+                                            <td>:</td>
+                                            <td> {{  $transaksis->tgl_mulai }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tgl Pengembalian</td>
+                                            <td>:</td>
+                                            <td> {{  $transaksis->tgl_selesai }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lama Sewa</td>
+                                            <td>:</td>
+                                            <td> {{  $lama_hari }} Hari</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Sewa</td>
+                                            <td>:</td>
+                                            <td>Rp.{{ $total }}</td>
+                                        </tr>
+
                                     </table>
                                 </div>
                                 <div class="col-lg-4">
@@ -72,9 +94,17 @@
                               </div>
                           </div>
                     </div>
-                        <div class="d-flex justify-content-end ">
-                            <a href="{{ route('konfirmasi.index') }}" class="btn btn-sm btn-secondary float-right mb-0 d-none d-lg-block">Kembali</a>
-                        </div>
+                        <form action="{{ route('confirm.transaksi', $transaksis->id) }}" method="POST">
+                            @csrf
+                            @method('put')
+                            <input type="hidden" name="total" value="{{ $total }}">
+                            <input type="hidden" name="status" value="Tidak Tersedia">
+                            <input type="hidden" name="status_transaksi" value="success">
+                            <div class="d-flex justify-content-end my-3">
+                                <button type="submit" class="btn btn-sm btn-primary mx-2 float-right mb-0 d-none d-lg-block">Konfirmasi</button>
+                                <a href="{{ route('konfirmasi.index') }}" class="btn btn-sm btn-secondary float-right mb-0 d-none d-lg-block">Kembali</a>
+                            </div>
+                        </form>
                 </div>
             </div>
         </div>

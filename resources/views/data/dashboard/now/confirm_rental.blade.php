@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 
 @section('title')
-    Konfirmasi penyewaan
+    Konfirmasi
 @endsection
 
 @section('rental_card-1')

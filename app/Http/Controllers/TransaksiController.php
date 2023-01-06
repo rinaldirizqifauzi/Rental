@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Rental;
 use App\Models\Transaksi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -34,15 +35,35 @@ class TransaksiController extends Controller
 
     public function detailTransaksi($id)
     {
+        $transaksis = Transaksi::where('id', $id)->first();
+        $tgl_mulai = Carbon::parse($transaksis->tgl_mulai);
+        $tgl_selesai = Carbon::parse($transaksis->tgl_selesai);
+
+        $lama_hari = $tgl_selesai->diffInDays($tgl_mulai);
+        $harga = $transaksis->rental->harga;
+
+        $total = $lama_hari * $harga;
         return view('data.transaksi.detail-transaksi', [
-            'transaksis' => Transaksi::where('id', $id)->first(),
+            'transaksis' => $transaksis,
+            'lama_hari' => $lama_hari,
+            'total' => $total
         ]);
     }
 
-    public function konfirmasiTransaksi($id)
+    public function konfirmasiTransaksi(Request $request, $id)
     {
-        $transaksi = Transaksi::where('id', $id)->first();
+        $data = $request->all();
 
-        dd($transaksi);
+        $transaksis = Transaksi::where('id', $id)->first();
+        $transaksis->status_transaksi = $data['status_transaksi'];
+        $transaksis->total = $data['total'];
+        $transaksis->update();
+
+        DB::table('rentals')->update([
+            'status' => $request->status,
+        ]);
+        // $rental->update();
+
+        return redirect()->route('konfirmasi.index');
     }
 }
