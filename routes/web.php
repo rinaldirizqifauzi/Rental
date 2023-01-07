@@ -13,6 +13,7 @@ use App\Http\Controllers\SpesikasiController;
 use App\Http\Controllers\KelengkapanController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -81,6 +82,13 @@ Route::prefix('/dashboard')->middleware('auth', 'ceklevel:admin', 'cekadmin:acti
     Route::get('/kelengkapan/{kode}/edit', [KelengkapanController::class, 'edit'])->name('kelengkapan.edit');
     Route::put('/kelengkapan/{kode}/update', [KelengkapanController::class, 'update'])->name('kelengkapan.update');
     Route::get('/kelengkapan/{kode}', [KelengkapanController::class, 'destroy'])->name('kelengkapan.destroy');
+
+    // Laporan
+    Route::get('/laporan',[ReportController::class, 'index'])->name('laporan.index');
+    Route::post('/laporan', [ReportController::class, 'store'])->name('laporan.store');
+    Route::get('/laporan/{id}/edit', [ReportController::class, 'edit'])->name('laporan.edit');
+    Route::put('/laporan/{id}/update', [ReportController::class, 'update'])->name('laporan.update');
+    Route::get('/laporan/{id}', [ReportController::class, 'destroy'])->name('laporan.destroy');
 });
 
 
@@ -103,6 +111,7 @@ Route::group(['prefix' => '/transaksi'], function(){
     Route::post('/', [TransaksiController::class, 'storeTransaksi'])->name('store.transaksi')->middleware('auth', 'ceklevel:pelanggan', 'cekpelanggan:active');
     Route::get('/detail/{id}', [TransaksiController::class, 'detailTransaksi'])->name('detail.transaksi')->middleware('auth', 'ceklevel:admin', 'cekadmin:active');
     Route::put('/konfirmasi/{id}', [TransaksiController::class, 'konfirmasiTransaksi'])->name('confirm.transaksi')->middleware('auth', 'ceklevel:admin', 'cekadmin:active');
+    Route::put('/kembali/{id}', [TransaksiController::class, 'kembaliTransaksi'])->name('kembali.transaksi')->middleware('auth', 'ceklevel:admin', 'cekadmin:active');
 });
 
 // Pelanggan Active

@@ -43,10 +43,23 @@ class TransaksiController extends Controller
         $harga = $transaksis->rental->harga;
 
         $total = $lama_hari * $harga;
+
+        $hari_ini = Carbon::today();
+
+        $loop = Transaksi::where('tgl_selesai', '<', $hari_ini)->get();
+        foreach ($loop as $item) {
+            $names = Carbon::parse($item->tgl_selesai);
+        }
+        $lama_expired = $names->diffInDays($hari_ini);
+
         return view('data.transaksi.detail-transaksi', [
             'transaksis' => $transaksis,
             'lama_hari' => $lama_hari,
-            'total' => $total
+            'total' => $total,
+            'confirm_now' => Transaksi::where('status_transaksi', ['pending', 'success'])->count(),
+            'expired_date' =>  Transaksi::where('tgl_selesai', '<', $hari_ini)->where('status_transaksi','success')->count(),
+            'kembali' =>  Transaksi::where('tgl_selesai', '<', $hari_ini)->where('status_transaksi','success')->get(),
+            'lama_expired' => $lama_expired
         ]);
     }
 
@@ -65,5 +78,20 @@ class TransaksiController extends Controller
         // $rental->update();
 
         return redirect()->route('konfirmasi.index');
+    }
+
+    // Kembali
+    public function kembaliTransaksi(Request $request, $id)
+    {
+        $data = $request->all();
+        $transaksis = Transaksi::where('id', $id)->first();
+        $transaksis->status_transaksi = $data['status_transaksi'];
+        $transaksis->update();
+
+        DB::table('rentals')->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back();
     }
 }

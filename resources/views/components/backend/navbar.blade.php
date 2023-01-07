@@ -36,7 +36,7 @@
                     <a href="{{ route('admin.create_profil', Auth::user()->username) }}" class="dropdown-item border-radius-md">
                         <div class="d-flex py-1">
                             <div class="d-flex flex-column justify-content-center">
-                                <h6>Buat Profil</h6>
+                                <p>Buat Profil</p>
                             </div>
                         </div>
                     </a>
@@ -46,7 +46,7 @@
                     <a href="{{ route('admin.show_profil', Auth::user()->username) }}" class="dropdown-item border-radius-md">
                         <div class="d-flex py-1">
                             <div class="d-flex flex-column justify-content-center">
-                                <h6> Profil</h6>
+                                <p> Profil</p>
                             </div>
                         </div>
                     </a>
@@ -56,7 +56,7 @@
                     <a href="{{ route('beranda') }}" class="dropdown-item border-radius-md">
                         <div class="d-flex py-1">
                             <div class="d-flex flex-column justify-content-center">
-                                <h6>Halaman Website</h6>
+                                <p>Halaman Website</p>
                             </div>
                         </div>
                     </a>
@@ -65,7 +65,7 @@
                 <a class="dropdown-item border-radius-md" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <div class="d-flex py-1">
                     <div class="d-flex flex-column justify-content-center">
-                        <h6>Log Out</h6>
+                        <>Log Out</>
                     </div>
                   </div>
                 </a>

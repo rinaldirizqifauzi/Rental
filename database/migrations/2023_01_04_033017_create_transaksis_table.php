@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('rental_id');
-            $table->enum('status_transaksi', ['pending', 'success']);
+            $table->enum('status_transaksi', ['pending', 'success', 'clear']);
             $table->string('tgl_mulai');
             $table->string('tgl_selesai');
             $table->enum('pick_up', ['sendiri' ,'antar']);

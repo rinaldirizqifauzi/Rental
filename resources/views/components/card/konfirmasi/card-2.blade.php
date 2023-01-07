@@ -101,7 +101,9 @@
                             <input type="hidden" name="status" value="Tidak Tersedia">
                             <input type="hidden" name="status_transaksi" value="success">
                             <div class="d-flex justify-content-end my-3">
-                                <button type="submit" class="btn btn-sm btn-primary mx-2 float-right mb-0 d-none d-lg-block">Konfirmasi</button>
+                                @if ($transaksis->status_transaksi == 'pending')
+                                    <button type="submit" class="btn btn-sm btn-primary mx-2 float-right mb-0 d-none d-lg-block">Konfirmasi</button>
+                                @endif
                                 <a href="{{ route('konfirmasi.index') }}" class="btn btn-sm btn-secondary float-right mb-0 d-none d-lg-block">Kembali</a>
                             </div>
                         </form>
