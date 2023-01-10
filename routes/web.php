@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MesinController;
 use App\Http\Controllers\WarnaController;
 use App\Http\Controllers\RentalController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SpesikasiController;
-use App\Http\Controllers\KelengkapanController;
-use App\Http\Controllers\MesinController;
 use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SpesikasiController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\KelengkapanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,6 @@ use App\Http\Controllers\TransaksiController;
 */
 
 //
-
 
 //Website
 
@@ -124,6 +123,7 @@ Route::group(['prefix' => '/transaksi'], function(){
         Route::put('/profil/update/{user}',[ UserController::class, 'updateProfil'])->name('update.profil');
         Route::get('/homepage',[ WebsiteController::class, 'showHomepage'])->name('homepage');
         Route::get('/product/detail/{kode_mobil}',[ WebsiteController::class, 'showDetailProduct'])->name('product.detail');
+        Route::get('/recent/{id}',[ WebsiteController::class, 'recentUserProduct'])->name('product.recent');
     });
 
     Route::prefix('/pelanggan')->group(function(){

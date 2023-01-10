@@ -43,6 +43,47 @@
         }
     }
 
+    function previewImage1() {
+        const gambar1 = document.querySelector('#gambar1');
+        const imgPreview1 = document.querySelector('.img-preview1');
+
+        imgPreview1.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(gambar1.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview1.src = oFREvent.target.result;
+        }
+    }
+
+    function previewImage2() {
+        const gambar2 = document.querySelector('#gambar2');
+        const imgPreview2 = document.querySelector('.img-preview2');
+
+        imgPreview2.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(gambar2.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview2.src = oFREvent.target.result;
+        }
+    }
+
+    function previewImage3() {
+        const gambar3 = document.querySelector('#gambar3');
+        const imgPreview3 = document.querySelector('.img-preview3');
+
+        imgPreview3.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(gambar3.files[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview3.src = oFREvent.target.result;
+        }
+    }
 </script>
 
 

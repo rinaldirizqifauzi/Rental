@@ -15,4 +15,15 @@ class Detailadmin extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
+    }
+
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('detailusers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique();
+            $table->char('user_id', 36);
             $table->string('email');
             $table->string('nama');
             $table->string('username');
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

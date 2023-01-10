@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('nama_tipe');
             $table->string('kode_tipe')->unique();
             $table->string('gambar');
+            $table->string('gambar1')->nullable();
+            $table->string('gambar2')->nullable();
+            $table->string('gambar3')->nullable();
             $table->timestamps();
         });
     }

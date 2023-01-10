@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('detailadmins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique();
+            $table->char('user_id', 36);
             $table->string('nama');
             $table->string('alamat');
             $table->string('tpt_lhr');
@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('background')->nullable();
             $table->string('no_hp')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -3,12 +3,8 @@
         <div class="row">
             <div class="col-8">
                 <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Pembayaran</p>
-                        <h5 class="font-weight-bolder"> 2,300</h5>
-                    <p class="mb-0">
-                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                        since last week
-                    </p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Pendapatan</p>
+                        <h5 class="font-weight-bolder">Rp .{{ $pendapatan_now }}</h5>
                 </div>
             </div>
             <div class="col-4 text-end">

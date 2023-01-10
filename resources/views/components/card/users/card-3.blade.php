@@ -56,7 +56,7 @@
                             <p> Kartu Keluarga</p>
                             <div class="card">
                                 <div class="card-body ">
-                                    <img src="{{ asset('ktp') }}/{{ $user->detail()->first()->foto_ktp }}" alt="" class="card-img-top" height="130">
+                                    <img src="{{ asset('kk') }}/{{ $user->detail()->first()->foto_kk }}" alt="" class="card-img-top" height="130">
                                 </div>
                             </div>
                         </div>

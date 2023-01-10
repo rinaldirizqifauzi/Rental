@@ -24,7 +24,7 @@
                         <p>{{  $transaksi->user->detail->first()->nama }}, {{  $transaksi->status_transaksi }}</p>
                         <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
                             <div class="d-flex justify-content-center">
-                            <a href="{{ route('detail.transaksi', ['id' => $transaksi->id]) }}" class="btn btn-sm btn-info float-right mb-0 d-none d-lg-block">Detail</a>
+                                <a href="{{ route('detail.transaksi', ['id' => $transaksi->id]) }}" class="btn btn-sm btn-info float-right mb-0 d-none d-lg-block">Detail</a>
                             </div>
                         </div>
                     </div>

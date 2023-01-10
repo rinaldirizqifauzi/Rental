@@ -8,6 +8,11 @@
     @include('components.frontend.navbar')
 @endsection
 
+@section('riwayat')
+<a  href="{{ route('product.recent',  Auth::user()->id) }}" class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom">
+    Riwayat
+</a>
+@endsection
 
 @section('page-header')
 <div class="page-header" data-parallax="true" style="background-image: url('{{ asset('frontend') }}/assets/img/image-1.jpg');">

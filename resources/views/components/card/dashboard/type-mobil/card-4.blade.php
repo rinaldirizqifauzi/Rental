@@ -33,6 +33,54 @@
                             @enderror
                         </div>
                     </div>
+                    {{-- Gambar1 --}}
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Gambar 1</label>
+                        <div class="form-group">
+                            @if ($tipe->gambar1 == null)
+                                <img  class="img-preview1 card-img-top my-2">
+                            @else
+                                <img src="{{ asset('gambar1') }}/{{ $tipe->gambar1 }}" alt="Image placeholder" class="img-preview1 card-img-top" >
+                            @endif
+                            <label for="">{{ $tipe->gambar1 }}</label>
+                            <input type="file"  class="@error('gambar1') is-invalid @enderror" id="gambar1" name="gambar1"   onchange="previewImage1()">
+                            @error('gambar1')
+                                    <label style="color: red">{{ $message }}</label>
+                            @enderror
+                        </div>
+                    </div>
+                    {{-- Gambar2 --}}
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Gambar 2</label>
+                        <div class="form-group">
+                            @if ($tipe->gambar2 == null)
+                                <img  class="img-preview2 card-img-top my-2">
+                            @else
+                                <img src="{{ asset('gambar2') }}/{{ $tipe->gambar2 }}" alt="Image placeholder" class="img-preview2 card-img-top" >
+                            @endif
+                            <label for="">{{ $tipe->gambar2 }}</label>
+                            <input type="file"  class="@error('gambar2') is-invalid @enderror" id="gambar2" name="gambar2"   onchange="previewImage2()">
+                            @error('gambar2')
+                                    <label style="color: red">{{ $message }}</label>
+                            @enderror
+                        </div>
+                    </div>
+                    {{-- Gambar3 --}}
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Gambar 3</label>
+                        <div class="form-group">
+                            @if ($tipe->gambar3 == null)
+                                <img  class="img-preview3 card-img-top my-2">
+                            @else
+                                <img src="{{ asset('gambar3') }}/{{ $tipe->gambar3 }}" alt="Image placeholder" class="img-preview3 card-img-top" >
+                            @endif
+                            <label for="">{{ $tipe->gambar3 }}</label>
+                            <input type="file"  class="@error('gambar3') is-invalid @enderror" id="gambar3" name="gambar3"   onchange="previewImage3()">
+                            @error('gambar3')
+                                    <label style="color: red">{{ $message }}</label>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use Webpatser\Uuid\Uuid;
 use App\Models\Detailadmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,8 @@ class AdminController extends Controller
 
     public function storeAdmin(Request $request)
     {
+        $uuid = (string) Uuid::generate(4);
+
         $request->validate([
             'username' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -37,6 +40,7 @@ class AdminController extends Controller
         ]);
 
         User::create([
+            'id' => $uuid,
             'email' => $request->email,
             'username' => $request->username,
             'status_user' => $request->status_user,
@@ -44,7 +48,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.index');
 
     }
 
@@ -163,7 +167,6 @@ class AdminController extends Controller
 
             $file_background = public_path('/background_admin/'). $ubah->background;
 
-
             // Cek jika ada background
             if (file_exists($file_background)) {
                 // Maka hapus jika ada background
@@ -197,23 +200,33 @@ class AdminController extends Controller
             if ($user->status_user == 'active') {
                 // Table User
                 $user = User::where('id', $id)->first();
-                $user->delete();
-                // Table Detail Admin
+                // Table Detail User
                 $hapus = Detailadmin::where('user_id', $id)->first();
-                $file_fotoAdmin = public_path('/foto_admin/'). $hapus->foto;
-                $file_backgroundAdmin = public_path('/background_admin/'). $hapus->background;
-                // cek jika ada Foto
-               if (file_exists($file_fotoAdmin)){
-                // Maka Hapus Image yang ada di public
-                @unlink($file_fotoAdmin);
-                }
-                // cek jika ada Background
-                if (file_exists($file_backgroundAdmin)){
-                    // Maka Hapus Image yang ada di public
-                    @unlink($file_backgroundAdmin);
-                }
+                if ($hapus !== null) {
+                    $file_foto = public_path('/foto_admin/'). $hapus->foto;
+                    $file_background = public_path('/background_admin/'). $hapus->background;
 
+                    $hapus->delete();
+                    // cek jika ada Foto
+                    if (file_exists($file_foto)){
+                        echo "File foto ada di folder public/foto<br>";
+                        // Maka Hapus Image yang ada di public
+                        @unlink($file_foto);
+                    } else {
+                        echo "File foto tidak ada di folder public/foto<br>";
+                    }
+                    // cek jika ada Background
+                    if (file_exists($file_background)){
+                        echo "File background ada di folder public/background<br>";
+                        // Maka Hapus Image yang ada di public
+                        @unlink($file_background);
+                    } else {
+                        echo "File background tidak ada di folder public/background<br>";
+                    }
+                }
                 $hapus->delete();
+                $user = User::where('id', $id)->first();
+                $user->delete();
             }else{
                 $user = User::where('id', $id)->first();
                 $user->delete();

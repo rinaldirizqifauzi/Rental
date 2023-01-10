@@ -185,6 +185,9 @@ return [
         /*
          * Package Service Providers...
          */
+        Vinkla\Hashids\HashidsServiceProvider::class,
+        Webpatser\Uuid\UuidServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -210,6 +213,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
+        'Uuid' => Webpatser\Uuid\Uuid::class,
     ])->toArray(),
 
 ];

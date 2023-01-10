@@ -1,31 +1,37 @@
 <div class="main">
     <div class="container">
         <div class="row ">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <div class="section text-center">
                     <div class="card" style="width: 33rem;">
                         <img class="card-img-top img-fluid" src="{{ asset('gambar') }}/{{ $rentals->tipe->gambar }}" alt="Card image cap">
                     </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img class="card-img-top img-fluid" src="{{ asset('gambar1') }}/{{ $rentals->tipe->gambar1 }}" alt="Card image cap">
+                        </div>
+                        <div class="col-lg-4">
+                            <img class="card-img-top img-fluid" src="{{ asset('gambar2') }}/{{ $rentals->tipe->gambar2 }}" alt="Card image cap">
+                        </div>
+                        <div class="col-lg-4">
+                            <img class="card-img-top img-fluid" src="{{ asset('gambar3') }}/{{ $rentals->tipe->gambar3 }}" alt="Card image cap">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur blanditiis mollitia adipisci non eveniet fuga et pariatur, a eos temporibus veniam, atque ipsa nobis, excepturi magni? Alias dolor exercitationem deleniti.
-            </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 @if (auth()->user()->detail->first()->foto_kk == null AND auth()->user()->detail->first()->foto_kk == null)
-                <table>
-                    <ul>
-                        <li><p class="text-danger">Harap lengkapi persyaratan untuk rental mobil</p></li>
-                        <li><p class="text-danger">Untuk melengkapi persyaratan harap untuk isi foto identitas diri</p></li>
-                        <li><p class="text-danger">Setelah melengkapi foto identitas diri, silahkan pilih mobil yang Anda akan rental</p></li>
-                        <li><p class="text-danger">Terima Kasih</p></li>
-                    </ul>
-                </table>
-                <center>
-                    <a href="{{ route('edit.profil', Auth::user()->email) }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Foto Identitas Diri</a>
-                </center>
+                    <table>
+                        <ul>
+                            <li><p class="text-danger">Harap lengkapi persyaratan untuk rental mobil</p></li>
+                            <li><p class="text-danger">Untuk melengkapi persyaratan harap untuk isi foto identitas diri</p></li>
+                            <li><p class="text-danger">Setelah melengkapi foto identitas diri, silahkan pilih mobil yang Anda akan rental</p></li>
+                            <li><p class="text-danger">Terima Kasih</p></li>
+                        </ul>
+                    </table>
+                    <center>
+                        <a href="{{ route('edit.profil', Auth::user()->email) }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Foto Identitas Diri</a>
+                    </center>
                 @else
                     <div class="card" style="width: 20rem;">
                         <div class="card-body">
@@ -89,6 +95,14 @@
                         </div>
                     </div>
                 @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur blanditiis mollitia adipisci non eveniet fuga et pariatur, a eos temporibus veniam, atque ipsa nobis, excepturi magni? Alias dolor exercitationem deleniti.
+            </div>
+            <div class="col-lg-6">
+
             </div>
         </div>
     </div>

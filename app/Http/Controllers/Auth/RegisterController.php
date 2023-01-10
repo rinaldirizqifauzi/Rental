@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Webpatser\Uuid\Uuid;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -64,12 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $uuid = (string) Uuid::generate(4);
         return User::create([
-            'email' => $data['email'],
+            'id' => $uuid,
             'username' => $data['username'],
             'status_user' => $data['status_user'],
             'level' => $data['level'],
+            'email' => $data['email'],
+            'email_verified_at' => now(),
             'password' => Hash::make($data['password']),
         ]);
+
     }
 }

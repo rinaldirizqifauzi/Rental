@@ -19,13 +19,11 @@ class UserController extends Controller
     public function createProfil()
     {
         $user = User::findOrFail(Auth::user()->id);
-
         return view("website.create-profil", compact("user"));
     }
 
     public function storeProfil(Request $request)
     {
-
         $data = $request->all();
         $user = User::findOrFail(Auth::user()->id);
         $user->status_user = $data['status_user'];

@@ -4,6 +4,10 @@
     Dashboard
 @endsection
 
+@section('dashboard-content')
+    @include('components.backend.menu-dashboard.content')
+@endsection
+
 
 @section('dashboard_card-1')
     @include('components.backend.menu-dashboard.card-1')

@@ -21,7 +21,25 @@
 @endsection
 
 @section('card-title-confirm_penyewaan-1')
-    Konfirmasi Penyewaan
+<form action="" method="GET">
+    <div class="row">
+        <label for="">Status Transaksi</label>
+        <div class="col-lg-9">
+            <div class="input-group" >
+                <select name="status_transaksi" id="status_transaksi" class="form-control">
+                    @foreach ($statuses as $value => $label)
+                        <option value="{{ $value }}" {{ $statusSelected == $value ? "selected" : null}}>
+                        {{ $label }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <button class="btn btn-primary">Cari</button>
+        </div>
+    </div>
+</form>
 @endsection
 
 @section('card-content')

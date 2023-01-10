@@ -48,14 +48,14 @@
                           </td>
                           <td>
                             <div class="text-center">
-                              <p class="text-xs font-weight-bold mb-0">Tanggal Expired:</p>
-                              <h6 class="text-sm mb-0">{{ $item->tgl_selesai }}</h6>
+                              <p class="text-xs font-weight-bold mb-0">Tanggal Sewa:</p>
+                              <h6 class="text-sm mb-0">{{ $item->tgl_mulai }}</h6>
                             </div>
                           </td>
                           <td>
                             <div class="text-center">
                               <p class="text-xs font-weight-bold mb-0">Tanggal Expired:</p>
-                              <h6 class="text-sm mb-0">{{ $lama_expired }} Hari</h6>
+                              <h6 class="text-sm mb-0">{{ $item->tgl_selesai }}</h6>
                             </div>
                           </td>
                           <td>

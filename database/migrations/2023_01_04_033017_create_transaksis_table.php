@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->char('user_id', 36);
             $table->foreignId('rental_id');
             $table->enum('status_transaksi', ['pending', 'success', 'clear']);
             $table->string('tgl_mulai');
@@ -24,6 +24,8 @@ return new class extends Migration
             $table->enum('driver_confirm', ['iya','tidak']);
             $table->string('total')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

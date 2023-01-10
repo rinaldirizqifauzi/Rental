@@ -45,14 +45,14 @@
                                     Dashboard
                                 </a>
                                 @elseif(auth()->user()->status_user == 'active')
-                                <a href="{{ route('show.profil', Auth::user()->email) }}" class="dropdown-item">
+                                <a href="{{ route('show.profil', auth()->user()->id) }}" class="dropdown-item">
                                     Profil
                                  </a>
                             </li>
                             @endif
                             @if(Auth::user()->status_user == 'user')
                             <li class="nav-item">
-                                <a href="{{ route('create.profil', Auth::user()->email) }}" class="dropdown-item">
+                                <a href="{{ route('create.profil', Auth::user()->id) }}" class="dropdown-item">
                                     Buat Profil
                                 </a>
                             </li>
@@ -73,24 +73,9 @@
                     @endguest
                 </ul>
             </div>
-            {{-- @auth
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#pk">Action</a>
-                  <a class="dropdown-item" href="#pk">Another action</a>
-                  <a class="dropdown-item" href="#pk">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#pk">Separated link</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#pk">Another separated link</a>
-                </ul>
-              </div>
-            @else
-            <li class="nav-item">
-              <a href="{{ route('login') }}"  class="nav-link"><i class="nc-icon nc-book-bookmark"></i> Login</a>
-            </li>
-            @endauth --}}
+          <li class="nav-item">
+             @yield('riwayat')
+          </li>
           <li class="nav-item">
             <a  href="{{ route('beranda') }}" class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom">
                 Beranda

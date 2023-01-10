@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Carbon\Carbon;
 use App\Models\Rental;
 use App\Models\Transaksi;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +13,6 @@ class TransaksiController extends Controller
 {
     public function storeTransaksi(Request $request)
     {
-        // dd(Auth::user()->rental->first()->harga);
          Transaksi::create([
             'user_id' => $request->user_id,
             'rental_id' => $request->rental_id,
@@ -30,7 +28,8 @@ class TransaksiController extends Controller
             'rental_id' => $request->rental_id,
             'created_at' => now(),
         ]);
-        return redirect()->back();
+
+        return redirect()->route('product.recent', Auth::user()->id);
     }
 
     public function detailTransaksi($id)
@@ -45,12 +44,8 @@ class TransaksiController extends Controller
         $total = $lama_hari * $harga;
 
         $hari_ini = Carbon::today();
-
-        $loop = Transaksi::where('tgl_selesai', '<', $hari_ini)->get();
-        foreach ($loop as $item) {
-            $names = Carbon::parse($item->tgl_selesai);
-        }
-        $lama_expired = $names->diffInDays($hari_ini);
+        $sewa_now = DB::table('rental_user')->count();
+        $pendapatan_now =  DB::table('transaksis')->sum('total');
 
         return view('data.transaksi.detail-transaksi', [
             'transaksis' => $transaksis,
@@ -59,23 +54,34 @@ class TransaksiController extends Controller
             'confirm_now' => Transaksi::where('status_transaksi', ['pending', 'success'])->count(),
             'expired_date' =>  Transaksi::where('tgl_selesai', '<', $hari_ini)->where('status_transaksi','success')->count(),
             'kembali' =>  Transaksi::where('tgl_selesai', '<', $hari_ini)->where('status_transaksi','success')->get(),
-            'lama_expired' => $lama_expired
+            'sewa_now' => $sewa_now,
+            'pendapatan_now' => $pendapatan_now,
         ]);
     }
 
     public function konfirmasiTransaksi(Request $request, $id)
     {
-        $data = $request->all();
 
+        $data = $request->all();
         $transaksis = Transaksi::where('id', $id)->first();
         $transaksis->status_transaksi = $data['status_transaksi'];
         $transaksis->total = $data['total'];
         $transaksis->update();
 
-        DB::table('rentals')->update([
+
+        $id_transaksi = Transaksi::where('id', $id)->get();
+        foreach ($id_transaksi as $id) {
+            $rental_id = $id->rental->id;
+        }
+
+        // Jika Memilih salah satu dan mobil yang lain akan dihapus
+        if (Transaksi::where('rental_id', $rental_id)->where('status_transaksi', 'success')->exists()) {
+            Transaksi::where('rental_id', $rental_id)->where('status_transaksi', 'pending')->delete();
+        }
+
+        DB::table('rentals')->where('id', $rental_id)->update([
             'status' => $request->status,
         ]);
-        // $rental->update();
 
         return redirect()->route('konfirmasi.index');
     }
@@ -88,7 +94,12 @@ class TransaksiController extends Controller
         $transaksis->status_transaksi = $data['status_transaksi'];
         $transaksis->update();
 
-        DB::table('rentals')->update([
+        $id_transaksi = Transaksi::where('id', $id)->get();
+        foreach ($id_transaksi as $id) {
+           $rental_id = $id->rental->id;
+        }
+
+        DB::table('rentals')->where('id', $rental_id)->update([
             'status' => $request->status,
         ]);
 

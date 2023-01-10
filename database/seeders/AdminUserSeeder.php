@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Webpatser\Uuid\Uuid;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -18,6 +19,7 @@ class AdminUserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
+                'id' => Uuid::generate()->string,
                 'username' => 'kyy',
                 'status_user' => null,
                 'level' => 'admin',

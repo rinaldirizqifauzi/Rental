@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Mesin;
 use App\Models\Rental;
-use App\Models\Detailuser;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WebsiteController extends Controller
 {
@@ -33,8 +33,27 @@ class WebsiteController extends Controller
 
     public function showDetailProduct($kode_mobil)
     {
-        return view('website.detail-product',[
-            'rentals' => Rental::where('kode_mobil', $kode_mobil)->first(),
-        ]);
+        $rentals = Rental::where('kode_mobil', $kode_mobil)->first();
+        if ($rentals && $rentals->status == "Tersedia") {
+            return view('website.detail-product', [
+                'rentals' => $rentals
+            ]);
+        }else{
+            return redirect()->back();
+        }
+    }
+
+    public function recentUserProduct($id)
+    {
+        $users = User::find($id);
+
+        if ($users && $users->id == auth()->user()->id) {
+            return view('website.recent-product',[
+                'users' => $users,
+                'recents' => $users->transaksi,
+            ]);
+        }else {
+            return redirect()->back();
+        }
     }
 }

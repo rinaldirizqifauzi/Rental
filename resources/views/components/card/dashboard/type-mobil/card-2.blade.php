@@ -42,6 +42,42 @@
                             </span>
                         @enderror
                     </div>
+                    {{-- Gambar 1 --}}
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Gambar mobil 1</label><br>
+                        <img  class="img-preview1 my-2" height="120" width="270">
+                        <input class="form-control  @error('gambar1') is-invalid @enderror" name="gambar1"  id="gambar1" value="{{ old('gambar1') }}" type="file" onchange="previewImage1()" >
+                        <label for=""></label>
+                        @error('gambar1')
+                            <span style="color: red">
+                                    {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                    {{-- Gambar 2 --}}
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Gambar mobil 2</label><br>
+                        <img  class="img-preview2 my-2" height="120" width="270">
+                        <input class="form-control  @error('gambar2') is-invalid @enderror" name="gambar2"  id="gambar2" value="{{ old('gambar2') }}" type="file" onchange="previewImage2()" >
+                        <label for=""></label>
+                        @error('gambar2')
+                            <span style="color: red">
+                                    {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                    {{-- Gambar 3 --}}
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Gambar mobil 3</label><br>
+                        <img  class="img-preview3 my-2" height="120" width="270">
+                        <input class="form-control  @error('gambar3') is-invalid @enderror" name="gambar3"  id="gambar3" value="{{ old('gambar3') }}" type="file" onchange="previewImage3()" >
+                        <label for=""></label>
+                        @error('gambar3')
+                            <span style="color: red">
+                                    {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
                 </div>
             </div>
         </div>

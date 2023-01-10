@@ -69,6 +69,12 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
+                                            {{-- user_id --}}
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control form-control-danger"  value="{{ Auth::user()->id }}"id="inputDanger1" name="user_id">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
                                             {{-- Nama --}}
                                             <label > Nama </label>
                                             <div class="form-group @error('nama') has-danger @enderror">

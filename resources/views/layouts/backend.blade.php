@@ -70,7 +70,7 @@
     {{-- Sidebar --}}
     <div class="container-fluid py-4">
         @include('components.backend.menu-dashboard.content')
-
+        @yield('menu_laporan')
         @yield('card-content')
     </div>
     <!-- End Sidebar -->

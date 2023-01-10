@@ -29,29 +29,23 @@
             <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-user me-sm-1"></i>
             </a>
+            @if(Auth::user()->status_user == null)
+            <a href="{{ route('admin.create_profil', Auth::user()->username) }}"class="nav-link text-white" id="iconNavbarSidenav">
+                | <span class="nav-link-text ms-1" style="color: white">Buat Profil </span>
+            </a>
+            @elseif(Auth::user()->status_user == 'active')
+            <a href="{{ route('admin.show_profil', Auth::user()->username) }}"class="nav-link text-white" id="iconNavbarSidenav">
+                | <span class="nav-link-text ms-1" style="color: white">Profil </span>
+            </a>
+            @endif
             <span class="nav-link-text ms-1" style="color: white">Wellcome, {{ auth()->user()->username }}</span>
+            <a class="nav-link-text text-white" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                | <span class="nav-link-text ms-1" style="color: white">Log Out </span>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
             <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                @if(Auth::user()->status_user == null)
-                <li class="mb-2">
-                    <a href="{{ route('admin.create_profil', Auth::user()->username) }}" class="dropdown-item border-radius-md">
-                        <div class="d-flex py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                                <p>Buat Profil</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                @elseif(Auth::user()->status_user == 'active')
-                <li class="mb-2">
-                    <a href="{{ route('admin.show_profil', Auth::user()->username) }}" class="dropdown-item border-radius-md">
-                        <div class="d-flex py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                                <p> Profil</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                @endif
                 <li class="mb-2">
                     <a href="{{ route('beranda') }}" class="dropdown-item border-radius-md">
                         <div class="d-flex py-1">
@@ -60,18 +54,6 @@
                             </div>
                         </div>
                     </a>
-              </li>
-              <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  <div class="d-flex py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                        <>Log Out</>
-                    </div>
-                  </div>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
               </li>
             </ul>
           </li>
